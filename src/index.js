@@ -1,6 +1,7 @@
 const express = require("express");
 const middlewares = require("./routes");
 const cors = require("cors");
+const clienteDB = require("./database");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -22,6 +23,17 @@ app.use(
 
 // middlewares
 middlewares(app);
+
+// Database
+clienteDB
+  .connect()
+  .then(() => {
+    console.log("Database listening on port 5432");
+  })
+  .catch((error) => {
+    console.error("database server crashed");
+    console.error("error: ", error);
+  });
 
 // Listen
 app.listen(port, () => console.log(`server listening on port ${port}`));

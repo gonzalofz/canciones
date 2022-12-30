@@ -1,7 +1,7 @@
-const songsRoutes = require("./songs");
+const notesRoutes = require("./notes");
 
 const middlewares = (app) => {
-  app.use("/api", songsRoutes);
+  app.use("/api", notesRoutes);
 };
 
 module.exports = middlewares;
